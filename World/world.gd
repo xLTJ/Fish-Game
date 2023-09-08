@@ -2,7 +2,7 @@ extends Node2D
 @export var tilemap: TileMap
 @export var algee_scene: PackedScene
 
-var algee_count = 0
+@onready var player_vars = get_node("/root/PlayerVariables")
 
 func _on_algee_timer_timeout():
 	# creates a new instance of the Mob scene (so it basically creates the mob)
@@ -17,8 +17,8 @@ func _on_algee_timer_timeout():
 
 
 func algee_collected():
-	algee_count += 1
-	print(algee_count)
+	player_vars.algee_count += 1
+	print(player_vars.algee_count)
 
 
 # Called when the node enters the scene tree for the first time.

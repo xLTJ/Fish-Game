@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://djssfj338n3yp"]
+[gd_scene load_steps=10 format=3 uid="uid://djssfj338n3yp"]
 
 [ext_resource type="Texture2D" uid="uid://dxadkkj6phutx" path="res://Art/RPG Nature Tileset.png" id="1_h3lnv"]
 [ext_resource type="Script" path="res://World/world.gd" id="1_msbv5"]
 [ext_resource type="PackedScene" uid="uid://bnalqmaj6fdg5" path="res://Player/player.tscn" id="1_r2kw7"]
 [ext_resource type="Script" path="res://World/TileMap.gd" id="3_a4ci0"]
 [ext_resource type="Script" path="res://World/follow cam.gd" id="3_m2p17"]
+[ext_resource type="PackedScene" uid="uid://c3y6rmbvhv1ym" path="res://UI/HUD.tscn" id="7_242bf"]
 [ext_resource type="PackedScene" uid="uid://dg717hhkupat6" path="res://Entities/algee.tscn" id="7_dvtk1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p5tbp"]
@@ -595,5 +596,8 @@ tilemap = NodePath("../../TileMap")
 
 [node name="AlgeeTimer" type="Timer" parent="."]
 
+[node name="CanvasLayer" parent="." instance=ExtResource("7_242bf")]
+
 [connection signal="collected_algee" from="Player" to="." method="algee_collected"]
+[connection signal="collected_algee" from="Player" to="CanvasLayer" method="_on_player_collected_algee"]
 [connection signal="timeout" from="AlgeeTimer" to="." method="_on_algee_timer_timeout"]
