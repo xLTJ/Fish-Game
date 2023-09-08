@@ -1,4 +1,5 @@
 extends Node2D
+@export var tilemap: TileMap
 @export var algee_scene: PackedScene
 
 var algee_count
@@ -7,13 +8,29 @@ func _on_algee_timer_timeout():
 	# creates a new instance of the Mob scene (so it basically creates the mob)
 	var algee = algee_scene.instantiate()
 	
-	# sets the spawn location of the mob on a random point of the `MobSpawnLocation` Path2D (which is basically anywhere on the edge of the screen)
-	var algee_spawn_location = get_node("MobPath/MobSpawnLocation")
+	var world_borders = tilemap.get_used_rect() # Gets the amount of tiles used
+	var tile_size = tilemap.cell_quadrant_size # Gets tje size of each tile in pixels
+	var world_size = world_borders.size * tile_size # The size of the world in pixels
+	algee.position = Vector2(randi_range(10, world_size.x - 10), randi_range(10, world_size.y - 10))
+	
+	add_child(algee)
 
+
+func algee_collected():
+	algee_count += 1
+	print('point wow')
+
+
+# func get_algee_node():
+	# var algee_node = get_tree().get_root().find_node('Algee', true, false)
+	# algee_node.connect('hit', self, 'algee_collected')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	print('yes')
+	$AlgeeTimer.start()
+	# get_algee_node()
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
