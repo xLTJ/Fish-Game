@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+signal collected_algee
 @export var speed: int = 200
 @onready var player_animation = $AnimationPlayer
 @onready var player_sprite = $Sprite2D
@@ -38,3 +39,6 @@ func _physics_process(delta):
 	move_and_slide()
 	player_animation_update()
 
+func algee_collected():
+	collected_algee.emit()
+	

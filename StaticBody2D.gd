@@ -1,11 +1,11 @@
 extends Area2D
 
-signal hit
+
 
 func _on_body_entered(body): 
 	print('hit')
 	queue_free() # Algee gets deleted after being hit
-	hit.emit()
+	body.algee_collected()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
