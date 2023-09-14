@@ -2,7 +2,7 @@ extends CanvasLayer
 @onready var player_vars = get_node("/root/PlayerVariables")
 
 func show_algee_count(count):
-	$algeeCount.text = 'algees: ' + str(count)
+	$algeeCount.text = str(count)
 
 
 # Called when the node enters the scene tree for the first time.

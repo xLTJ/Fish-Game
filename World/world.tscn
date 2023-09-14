@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://djssfj338n3yp"]
+[gd_scene load_steps=11 format=3 uid="uid://djssfj338n3yp"]
 
 [ext_resource type="Texture2D" uid="uid://dxadkkj6phutx" path="res://Art/RPG Nature Tileset.png" id="1_h3lnv"]
 [ext_resource type="Script" path="res://World/world.gd" id="1_msbv5"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://World/TileMap.gd" id="3_a4ci0"]
 [ext_resource type="Script" path="res://World/follow cam.gd" id="3_m2p17"]
 [ext_resource type="PackedScene" uid="uid://dg717hhkupat6" path="res://Entities/algee.tscn" id="7_dvtk1"]
+[ext_resource type="PackedScene" uid="uid://bkq0m10yhdwh2" path="res://Entities/enemy_body.tscn" id="7_ie3my"]
+[ext_resource type="PackedScene" uid="uid://c3y6rmbvhv1ym" path="res://UI/HUD.tscn" id="7_thtiw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p5tbp"]
 texture = ExtResource("1_h3lnv")
@@ -571,10 +573,8 @@ texture = ExtResource("1_h3lnv")
 [sub_resource type="TileSet" id="TileSet_3bhck"]
 sources/0 = SubResource("TileSetAtlasSource_p5tbp")
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("tilemap")]
+[node name="World" type="Node2D"]
 script = ExtResource("1_msbv5")
-tilemap = NodePath("TileMap")
-algee_scene = ExtResource("7_dvtk1")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_3bhck")
@@ -595,8 +595,15 @@ tilemap = NodePath("../../TileMap")
 
 [node name="AlgeeTimer" type="Timer" parent="."]
 
-[node name="CanvasLayer" parent="." instance=ExtResource("7_242bf")]
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+
+[node name="HUD" parent="." instance=ExtResource("7_thtiw")]
+
+[node name="EnemyBody" parent="." instance=ExtResource("7_ie3my")]
+position = Vector2(57.5904, 54.3692)
+
+[node name="Algee" parent="." instance=ExtResource("7_dvtk1")]
 
 [connection signal="collected_algee" from="Player" to="." method="algee_collected"]
-[connection signal="collected_algee" from="Player" to="CanvasLayer" method="_on_player_collected_algee"]
-
+[connection signal="collected_algee" from="Player" to="HUD" method="_on_player_collected_algee"]
+[connection signal="timeout" from="AlgeeTimer" to="." method="_on_algee_timer_timeout"]

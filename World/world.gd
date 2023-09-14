@@ -5,8 +5,9 @@ extends Node2D
 @onready var player_vars = get_node("/root/PlayerVariables")
 
 func _on_algee_timer_timeout():
+	print('works')
 	# creates a new instance of the Mob scene (so it basically creates the mob)
-	var algee = algee_scene.instantiate()
+w	var algee = algee_scene.instantiate()
 	
 	var world_borders = tilemap.get_used_rect() # Gets the amount of tiles used
 	var tile_size = tilemap.cell_quadrant_size # Gets tje size of each tile in pixels
@@ -14,6 +15,7 @@ func _on_algee_timer_timeout():
 	algee.position = Vector2(randi_range(10, world_size.x - 10), randi_range(10, world_size.y - 10))
 	
 	add_child(algee)
+
 
 
 func algee_collected():
