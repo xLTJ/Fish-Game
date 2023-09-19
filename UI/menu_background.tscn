@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://ciscfs4u0cmf0"]
+
+[ext_resource type="Texture2D" uid="uid://cf3y53uakcvd8" path="res://Art/Assets/UI/Background.png" id="1_k85hp"]
+[ext_resource type="Texture2D" uid="uid://c1x5oms4qcfvd" path="res://Art/Assets/UI/Frame.png" id="2_yfrqw"]
+
+[sub_resource type="Theme" id="Theme_5ob2b"]
+
+[node name="Menu Background" type="CanvasLayer"]
+
+[node name="Frame" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = 183.0
+offset_top = 109.0
+offset_right = 4113.0
+offset_bottom = 2271.0
+scale = Vector2(0.2, 0.2)
+theme = SubResource("Theme_5ob2b")
+texture = ExtResource("1_k85hp")
+
+[node name="Background" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = 168.0
+offset_top = 97.0
+offset_right = 981.0
+offset_bottom = 548.0
+texture = ExtResource("2_yfrqw")

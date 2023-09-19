@@ -1,18 +1,23 @@
 [gd_scene load_steps=4 format=3 uid="uid://dg717hhkupat6"]
 
 [ext_resource type="Script" path="res://StaticBody2D.gd" id="1_ubntr"]
-[ext_resource type="Texture2D" uid="uid://clduvwoh1kmn3" path="res://Art/Assets/Alge.png" id="2_26ms6"]
+[ext_resource type="Texture2D" uid="uid://duyy47j5i8oy" path="res://Art/Assets/Algee.png" id="2_ubbqj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2swtb"]
 size = Vector2(82, 86)
 
 [node name="Algee" type="Area2D" groups=["algees"]]
+scale = Vector2(1.765, 1.765)
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_ubntr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_26ms6")
+scale = Vector2(0.007, 0.007)
+texture = ExtResource("2_ubbqj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.2, 0.2)
 shape = SubResource("RectangleShape2D_2swtb")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

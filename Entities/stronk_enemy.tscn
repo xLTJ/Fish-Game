@@ -1,0 +1,121 @@
+[gd_scene load_steps=13 format=3 uid="uid://bddps6dq1ax8m"]
+
+[ext_resource type="Script" path="res://StronkEnemy.gd" id="1_de5px"]
+[ext_resource type="Texture2D" uid="uid://2gxvlj34p0oq" path="res://Art/Assets/Swimming_people_-_hat.png" id="2_kmfq0"]
+[ext_resource type="PackedScene" uid="uid://otgr0f2aspgs" path="res://Entities/projectile.tscn" id="2_qymtf"]
+[ext_resource type="Texture2D" uid="uid://bdkralgvav3xb" path="res://Art/Assets/Blood/Blood FX Lite SpriteSheet 2A-1.png" id="3_12hdn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t6003"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s72e0"]
+bg_color = Color(1, 0.345098, 0.243137, 1)
+
+[sub_resource type="Theme" id="Theme_7t5uk"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_t6003")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_s72e0")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_edjqe"]
+radius = 8.80196
+
+[sub_resource type="Animation" id="Animation_10alo"]
+resource_name = "Death"
+length = 0.7
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55]
+}
+
+[sub_resource type="Animation" id="Animation_s20xv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aynyr"]
+_data = {
+"Death": SubResource("Animation_10alo"),
+"RESET": SubResource("Animation_s20xv")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7phd8"]
+
+[node name="StronkEnemy" type="CharacterBody2D"]
+scale = Vector2(2.84, 2.84)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_de5px")
+projective_scene = ExtResource("2_qymtf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("2_kmfq0")
+
+[node name="HealthBorder" type="Panel" parent="."]
+offset_left = -32.0
+offset_top = -38.0
+offset_right = 32.0
+offset_bottom = -28.0
+
+[node name="HealthBar" type="ProgressBar" parent="HealthBorder"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.046875
+anchor_top = 0.2
+anchor_right = 0.375
+anchor_bottom = 0.2
+offset_right = 236.0
+offset_bottom = 27.0
+scale = Vector2(0.225, 0.225)
+theme = SubResource("Theme_7t5uk")
+max_value = 20.0
+value = 2.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, -2)
+scale = Vector2(2.045, 2.045)
+shape = SubResource("CircleShape2D_edjqe")
+
+[node name="DeathAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_aynyr")
+}
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-1, -5)
+scale = Vector2(0.450521, 0.542318)
+texture = ExtResource("3_12hdn")
+hframes = 73
+frame = 2
+
+[node name="ProjectileTimer" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.05634, -1.76056)
+shape = SubResource("CircleShape2D_7phd8")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="ProjectileTimer" to="." method="_on_projectile_timer_timeout"]

@@ -1,37 +1,180 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3y6rmbvhv1ym"]
+[gd_scene load_steps=20 format=3 uid="uid://c3y6rmbvhv1ym"]
 
 [ext_resource type="Script" path="res://UI/HUD.gd" id="1_sn3wd"]
-[ext_resource type="Texture2D" uid="uid://xukjectxrt2" path="res://Art/Assets/UI/Algae_count_bar_v2_LONGER.png" id="2_4vll7"]
-[ext_resource type="Texture2D" uid="uid://d117qe4wocisy" path="res://Art/Assets/UI/Shop_icon_v2.png" id="3_kvs41"]
+[ext_resource type="Texture2D" uid="uid://bsq7lqkjk3ny" path="res://Art/Assets/UI/Algae_count_bar_v2_LONGER.png" id="2_avnrs"]
+[ext_resource type="Texture2D" uid="uid://80th8fu5ussp" path="res://Art/Assets/UI/UI_oxygen_-_1.png" id="3_7jqmq"]
+[ext_resource type="Texture2D" uid="uid://bhhbrkc72dgk6" path="res://Art/Assets/UI/Shop_icon_v2.png" id="4_l5jqx"]
+[ext_resource type="PackedScene" uid="uid://5xywxwvado32" path="res://UI/upgrade_menu.tscn" id="5_0634w"]
+[ext_resource type="Texture2D" uid="uid://cf3y53uakcvd8" path="res://Art/Assets/UI/Background.png" id="6_0q7sv"]
+[ext_resource type="Texture2D" uid="uid://c1x5oms4qcfvd" path="res://Art/Assets/UI/Frame.png" id="7_xu3sr"]
 
-[sub_resource type="Theme" id="Theme_1teff"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bq7ep"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j0xj2"]
+bg_color = Color(0.784314, 0, 0.0784314, 1)
+
+[sub_resource type="Theme" id="Theme_c877v"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_bq7ep")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_j0xj2")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fm7pp"]
+bg_color = Color(0.380392, 0.380392, 0.380392, 1)
+
+[sub_resource type="Theme" id="Theme_gmhb0"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_fm7pp")
+ProgressBar/styles/fill = null
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2i8vq"]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+border_width_left = 2
+border_width_bottom = 2
+border_color = Color(0.652344, 0.488281, 0.863281, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o4jn4"]
+bg_color = Color(0.184314, 0.184314, 0.184314, 1)
+border_width_left = 2
+border_width_bottom = 2
+border_color = Color(0.652344, 0.488281, 0.863281, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lwxee"]
+bg_color = Color(0.141176, 0.141176, 0.141176, 1)
+border_color = Color(0.652344, 0.488281, 0.863281, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="Theme" id="Theme_lfqqa"]
+Button/styles/disabled = SubResource("StyleBoxFlat_2i8vq")
+Button/styles/focus = SubResource("StyleBoxFlat_2i8vq")
+Button/styles/hover = SubResource("StyleBoxFlat_o4jn4")
+Button/styles/normal = SubResource("StyleBoxFlat_2i8vq")
+Button/styles/pressed = SubResource("StyleBoxFlat_lwxee")
+MenuButton/styles/hover = SubResource("StyleBoxFlat_o4jn4")
+MenuButton/styles/normal = SubResource("StyleBoxFlat_2i8vq")
+MenuButton/styles/pressed = SubResource("StyleBoxFlat_lwxee")
+
+[sub_resource type="InputEventKey" id="InputEventKey_3gqlq"]
+device = -1
+keycode = 85
+unicode = 117
+
+[sub_resource type="Shortcut" id="Shortcut_gwfnd"]
+events = [SubResource("InputEventKey_3gqlq")]
+
+[sub_resource type="Theme" id="Theme_a8nme"]
+
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_sn3wd")
 
 [node name="algeeCount" type="Label" parent="."]
-offset_left = 895.0
-offset_top = -3.0
-offset_right = 1142.0
-offset_bottom = 69.0
+offset_left = 850.0
+offset_top = 1.0
+offset_right = 1152.0
+offset_bottom = 79.0
 theme_override_font_sizes/font_size = 50
 text = "0"
+vertical_alignment = 1
 
-[node name="AlgeeCountOutline" type="TextureRect" parent="."]
-offset_left = 852.0
-offset_top = -46.0
-offset_right = 6852.0
-offset_bottom = 3154.0
-scale = Vector2(0.05, 0.05)
-size_flags_horizontal = 0
-texture = ExtResource("2_4vll7")
+[node name="AlgeeHUD" type="TextureRect" parent="."]
+offset_left = 794.0
+offset_top = -56.0
+offset_right = 6794.0
+offset_bottom = 3144.0
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("2_avnrs")
 
-[node name="Button" type="Button" parent="."]
-offset_left = 783.0
-offset_top = 3.0
-offset_right = 3991.0
-offset_bottom = 3211.0
-scale = Vector2(0.02, 0.02)
-theme = SubResource("Theme_1teff")
-icon = ExtResource("3_kvs41")
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = 898.0
+offset_top = 587.0
+offset_right = 1130.7
+offset_bottom = 625.0
+theme = SubResource("Theme_c877v")
+value = 50.0
+
+[node name="Oxygen?" type="TextureRect" parent="."]
+offset_left = 860.0
+offset_top = 416.0
+offset_right = 4060.0
+offset_bottom = 3616.0
+scale = Vector2(0.095, 0.095)
+theme = SubResource("Theme_gmhb0")
+texture = ExtResource("3_7jqmq")
+
+[node name="MenuButton" type="Button" parent="."]
+process_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_top = -106.0
+offset_right = -5.0
+offset_bottom = -26.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_lfqqa")
+shortcut = SubResource("Shortcut_gwfnd")
+text = "[U]"
+icon = ExtResource("4_l5jqx")
 icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Background" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = 158.0
+offset_top = 109.0
+offset_right = 4958.0
+offset_bottom = 2338.0
+scale = Vector2(0.175, 0.175)
+theme = SubResource("Theme_a8nme")
+texture = ExtResource("6_0q7sv")
+
+[node name="BackgroundLayer" type="Panel" parent="."]
+offset_left = 157.0
+offset_top = 112.0
+offset_right = 1005.0
+offset_bottom = 504.0
+
+[node name="Frame" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = 147.0
+offset_top = 104.0
+offset_right = 1008.0
+offset_bottom = 511.0
+texture = ExtResource("7_xu3sr")
+
+[node name="UpgradeMenu" parent="." instance=ExtResource("5_0634w")]
+offset_top = -176.0
+offset_bottom = 143.0
+
+[node name="HealthTImer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="health_increased" from="UpgradeMenu" to="." method="_on_upgrade_menu_health_increased"]
+[connection signal="timeout" from="HealthTImer" to="." method="_on_health_t_imer_timeout"]
