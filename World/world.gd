@@ -20,10 +20,13 @@ extends Node2D
 
 
 func _on_algee_timer_timeout():
+	print('works')
 	# creates a new instance of the Mob scene (so it basically creates the mob)
 	var algee = algee_scene.instantiate()
 	algee.position = Vector2(randi_range(10, global.world_size.x - 10), randi_range(10, global.world_size.y - 10))
+
 	add_child(algee)
+
 
 
 func algee_collected():
