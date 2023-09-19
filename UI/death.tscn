@@ -1,0 +1,201 @@
+[gd_scene load_steps=20 format=3 uid="uid://dhsmwxuefkyep"]
+
+[ext_resource type="Script" path="res://Death.gd" id="1_76jf8"]
+[ext_resource type="Texture2D" uid="uid://cpb3vk2yu1p3d" path="res://Art/Assets/Death/IMG_1441.png" id="2_n58q4"]
+[ext_resource type="Texture2D" uid="uid://chq8rp520x483" path="res://Art/Assets/Death/IMG_1442.png" id="3_1nhmj"]
+[ext_resource type="Texture2D" uid="uid://glypaabq7uhg" path="res://Art/Assets/Death/IMG_1443.png" id="4_u72ko"]
+[ext_resource type="Texture2D" uid="uid://rkspprm6r856" path="res://Art/Assets/Death/IMG_1444.png" id="5_h8lm2"]
+[ext_resource type="Texture2D" uid="uid://dqswwqrvtgjkm" path="res://Art/Assets/Death/IMG_1445.png" id="6_v4t15"]
+[ext_resource type="Texture2D" uid="uid://binb6n1dxa8n4" path="res://Art/Assets/Death/IMG_1446.png" id="7_gjlyi"]
+[ext_resource type="FontFile" uid="uid://dewppqhk0rb2n" path="res://Fonts/PublicPixel-z84yD.ttf" id="8_0csov"]
+[ext_resource type="AudioStream" uid="uid://cmrrccbx3uw5o" path="res://Sound/end.mp3" id="8_jutxq"]
+
+[sub_resource type="Animation" id="Animation_7etlh"]
+resource_name = "Fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_av5s7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextHide:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ftlvj"]
+resource_name = "Text_fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextHide:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gvej6"]
+resource_name = "text_hide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextHide:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oojec"]
+_data = {
+"Fade": SubResource("Animation_7etlh"),
+"RESET": SubResource("Animation_av5s7"),
+"Text_fade": SubResource("Animation_ftlvj"),
+"text_hide": SubResource("Animation_gvej6")
+}
+
+[sub_resource type="Animation" id="Animation_4vps0"]
+resource_name = "Death"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gfm17"]
+_data = {
+"Death": SubResource("Animation_4vps0")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0rde4"]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": ExtResource("2_n58q4")
+}, {
+"duration": 3.0,
+"texture": ExtResource("3_1nhmj")
+}, {
+"duration": 3.0,
+"texture": ExtResource("4_u72ko")
+}, {
+"duration": 3.0,
+"texture": ExtResource("5_h8lm2")
+}, {
+"duration": 3.0,
+"texture": ExtResource("6_v4t15")
+}, {
+"duration": 3.0,
+"texture": ExtResource("7_gjlyi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w8tyr"]
+bg_color = Color(0, 0, 0, 0.231373)
+
+[sub_resource type="Theme" id="Theme_epj8r"]
+Button/styles/hover = SubResource("StyleBoxFlat_w8tyr")
+Button/styles/normal = SubResource("StyleBoxFlat_w8tyr")
+Button/styles/pressed = SubResource("StyleBoxFlat_w8tyr")
+
+[node name="Death" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_76jf8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -22.0
+offset_top = -15.0
+offset_right = 1181.0
+offset_bottom = 663.0
+color = Color(0, 0, 0, 0)
+
+[node name="DeathAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_oojec")
+}
+
+[node name="DeathPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("")
+libraries = {
+"": SubResource("AnimationLibrary_gfm17")
+}
+
+[node name="DeathSprites" type="AnimatedSprite2D" parent="."]
+z_index = 20
+position = Vector2(547, 403)
+scale = Vector2(0.085, 0.085)
+sprite_frames = SubResource("SpriteFrames_0rde4")
+
+[node name="TextHide" type="ColorRect" parent="."]
+z_index = 30
+offset_left = -67.0
+offset_top = -38.0
+offset_right = 1206.0
+offset_bottom = 708.0
+color = Color(0, 0, 0, 1)
+
+[node name="Button" type="Button" parent="."]
+offset_left = -97.0
+offset_top = -80.0
+offset_right = 1264.0
+offset_bottom = 734.0
+theme = SubResource("Theme_epj8r")
+
+[node name="DeathText" type="Label" parent="."]
+offset_top = 85.0
+offset_right = 1149.0
+offset_bottom = 643.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.890196, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_0csov")
+theme_override_font_sizes/font_size = 80
+text = "YOU DIED"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="end" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_jutxq")
+
+[node name="Glitch_effect" type="ColorRect" parent="."]
+offset_left = -22.0
+offset_top = -15.0
+offset_right = 1181.0
+offset_bottom = 663.0
+color = Color(0, 0, 0, 1)
+
+[connection signal="animation_finished" from="DeathPlayer" to="." method="_on_death_player_animation_finished"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

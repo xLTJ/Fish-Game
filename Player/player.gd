@@ -1,19 +1,30 @@
 extends CharacterBody2D
 
 signal collected_algee
-@export var speed: int = 200
-@onready var player_animation = $AnimationPlayer
-@onready var player_sprite = $Sprite2D
+signal killed_enemy
+signal player_is_dead
+@onready var player_sprite = $AnimatedSprite2D
+@onready var player_vars = get_node("/root/PlayerVariables")
 var direction = 'up' # Direction the player faces. Default is up
 
+var last_velocity
+
+func _ready():
+	pass
+
+func _process(delta):
+	if player_vars.health <= 0:
+		player_death()
 
 # Gets the input of the player and sets the players velocity. get_vector specefies four actions for the positive and negative X and Y axes. For instance 'move_left' is for negative_x (aka left)
 func player_input():
-	var movement_direction = Input.get_vector('move_left', 'move_right', 'move_up', 'move_down')
-	
-	if movement_direction.length() > 0:
-		velocity = movement_direction.normalized() * speed
-	else: velocity = Vector2.ZERO # without this the player keeps moving when the key is released
+	if player_vars.can_move == true:
+		var movement_direction = Input.get_vector('move_left', 'move_right', 'move_up', 'move_down')
+		
+		if movement_direction.length() > 0:
+			velocity = movement_direction.normalized() * player_vars.speed
+			last_velocity = velocity
+		else: velocity = Vector2.ZERO # without this the player keeps moving when the key is released
 
 
 # Animates the player depending on their move direction
@@ -24,21 +35,35 @@ func player_animation_update():
 		if velocity.y > 0: direction = 'down'
 		elif velocity.y < 0: direction = 'up'
 		elif velocity.x != 0: direction = 'horizontal'
-		player_sprite.flip_h = velocity.x < 0 # flips the sprite so the player faces left if theyre moving left
+		player_sprite.flip_h = velocity.x > 0 # flips the sprite so the player faces left if theyre moving left
 	
 	# Plays the moving or the idle animation depending on the state
 	if state == 'moving':
-		player_animation.play('walk_' + direction)
-	else: 
-		player_animation.play('idle_' + direction)
+		player_sprite.play('move_' + direction)
+	# else: 
+	# 	 player_animation.play('idle_' + direction)
 
+
+func algee_collected():
+	collected_algee.emit()
 
 # This runs every frame
 func _physics_process(delta):
 	player_input()
 	move_and_slide()
 	player_animation_update()
+	
+	player_vars.position = position
 
-func algee_collected():
-	collected_algee.emit()
+
+func enemy_hit():
+	player_vars.can_move = false
+	velocity = last_velocity * -2
+	await get_tree().create_timer(0.15).timeout
+	player_vars.can_move = true
+
+
+func player_death():
+	get_tree().paused = true
+	player_is_dead.emit()
 	

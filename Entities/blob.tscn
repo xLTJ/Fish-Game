@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4h4ts41reqb1"]
+
+[ext_resource type="Script" path="res://Entities/blob.gd" id="1_blv81"]
+[ext_resource type="Texture2D" uid="uid://coc2j0h8o5utr" path="res://Art/Assets/Feeeshhhh.png" id="1_wgimg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ovxjm"]
+size = Vector2(20, 18.881)
+
+[node name="Blob" type="Area2D"]
+script = ExtResource("1_blv81")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-7.62939e-06, -7.62939e-06)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("1_wgimg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.575)
+scale = Vector2(2.815, 2.815)
+shape = SubResource("RectangleShape2D_ovxjm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
