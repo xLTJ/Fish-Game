@@ -84,7 +84,6 @@ events = [SubResource("InputEventKey_3gqlq")]
 
 [sub_resource type="Theme" id="Theme_a8nme"]
 
-
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_sn3wd")
 

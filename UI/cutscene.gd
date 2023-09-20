@@ -5,6 +5,7 @@ extends CanvasLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Blobfish.play()
 	get_parent().main_theme.volume_db = -20
 	$Name.text = 'Blobfish'
 	get_tree().paused = true
