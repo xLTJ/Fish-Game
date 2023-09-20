@@ -1,10 +1,10 @@
 extends Area2D
 @onready var player_vars = get_node("/root/PlayerVariables")
-
+@onready var global = get_node("/root/Global")
 
 func _on_body_entered(body): 
 	print('hit')
-	player_vars.algee_count += 1
+	player_vars.algee_count += 1 * player_vars.algee_multipler
 	body.algee_collected()
 	queue_free() # Algee gets deleted after being hit
 

@@ -9,7 +9,8 @@ func _ready():
 
 
 func _process(delta):
-	pass
+	if Input.is_action_just_pressed('skip'):
+		do_stuff()
 
 
 
@@ -25,7 +26,6 @@ func _on_player_player_is_dead():
 	$DeathText.show()
 	await get_tree().create_timer(3).timeout
 	$DeathSprites.pause()
-
 
 
 

@@ -43,9 +43,9 @@ func _on_buy_button_1_pressed():
 	elif global.player_upgrades[0] == 2:
 		if player_vars.algee_count >= global.upgrade_prices[0]:
 			global.player_upgrades[0] += 1
-			player_vars.player_damage *= 2
+			player_vars.player_damage += 2
 			player_vars.algee_count -= global.upgrade_prices[0]
-			$VBoxContainer1/DescriptionContainer/Description.text = 'Increase your damage by x2 (current: x8)'
+			$VBoxContainer1/DescriptionContainer/Description.text = 'Increase your damage multiplier by x2 (current: x6)'
 			
 			upgrade_buttons[0].text = 'bought'
 			upgrade_buttons[0].disabled = true
@@ -62,20 +62,20 @@ func _on_buy_button_2_pressed():
 	if global.player_upgrades[1] == 0:
 		if player_vars.algee_count >= global.upgrade_prices[1]:
 			global.player_upgrades[1] += 1
-			player_vars.max_health += 100
+			player_vars.max_health += 50
 			player_vars.algee_count -= global.upgrade_prices[1]
-			$VBoxContainer2/DescriptionContainer/Description.text = 'Increase your max health by 100 (current: 200)'
+			$VBoxContainer2/DescriptionContainer/Description.text = 'Increase your max health by 50 (current: 150)'
 			
 			health_increased.emit()
 			global.upgrade_prices[1] = 200
 			update_price(1)
 
-	elif global.player_upgrades[1] == 2:
+	elif global.player_upgrades[1] == 1:
 		if player_vars.algee_count >= global.upgrade_prices[1]:
 			global.player_upgrades[1] += 1
-			player_vars.max_health += 700
+			player_vars.max_health += 50
 			player_vars.algee_count -= global.upgrade_prices[1]
-			$VBoxContainer2/DescriptionContainer/Description.text = 'Increase your max health by 100 (current: 300)'
+			$VBoxContainer2/DescriptionContainer/Description.text = 'Increase your max health by 50 (current: 200)'
 			
 			upgrade_buttons[1].text = 'bought'
 			upgrade_buttons[1].disabled = true
@@ -101,7 +101,7 @@ func _on_buy_button_4_pressed():
 		if player_vars.algee_count >= global.upgrade_prices[3]:
 			global.player_upgrades[3] += 1
 			player_vars.algee_multipler *= 2
-			player_vars.algee_count -= global.upgrade_prices[3]
+			player_vars.alwwgee_count -= global.upgrade_prices[3]
 			$VBoxContainer4/DescriptionContainer/Description.text = 'Increase the algees you get by x2 (current: x2)'
 			
 			global.upgrade_prices[3] = 400
@@ -112,7 +112,7 @@ func _on_buy_button_4_pressed():
 			global.player_upgrades[3] += 1
 			player_vars.algee_multipler *= 2
 			player_vars.algee_count -= global.upgrade_prices[3]
-			$VBoxContainer1/DescriptionContainer/Description.text = 'Increase the algees you get by x2 (current: x4)'
+			$VBoxContainer4/DescriptionContainer/Description.text = 'Increase the algees you get by x2 (current: x4)'
 			
-			global.upgrade_prices[3] = 1000
-			update_price(3)
+			upgrade_buttons[2].text = 'bought'
+			upgrade_buttons[2].disabled = true

@@ -7,8 +7,8 @@ extends Node2D
 @export var stronk_enemy_scene: PackedScene
 @export var start_cutscene: PackedScene
 
-@export var enemy_limit = 50
-@export var stronk_enemy_limit = 20
+@export var enemy_limit = 20
+@export var stronk_enemy_limit = 10
 
 @onready var global = get_node("/root/Global")
 @onready var player_vars = get_node("/root/PlayerVariables")
