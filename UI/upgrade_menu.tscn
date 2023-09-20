@@ -123,7 +123,7 @@ size_flags_stretch_ratio = 2.08
 [node name="Description" type="Label" parent="VBoxContainer2/DescriptionContainer"]
 z_index = 10
 layout_mode = 2
-text = "Increase your max health by 100 (current: 100)"
+text = "Increase your max health by 50 (current: 100)"
 autowrap_mode = 3
 
 [node name="BuyButton2" type="Button" parent="VBoxContainer2" groups=["BuyButtons"]]

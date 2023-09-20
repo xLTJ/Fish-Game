@@ -13,7 +13,7 @@ config_version=5
 config/name="Fish Game"
 run/main_scene="res://World/world.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://icon.ico"
 
 [autoload]
 
@@ -24,6 +24,10 @@ PlayerVariables="*res://PlayerVariables.gd"
 
 window/size/mode=3
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_icon/plugin.cfg")
 
 [input]
 
