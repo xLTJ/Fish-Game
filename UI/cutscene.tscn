@@ -50,31 +50,31 @@ _data = {
 [sub_resource type="SpriteFrames" id="SpriteFrames_cxdk2"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("10_1y5hs")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("11_44lgl")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("12_nrqem")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("13_vhx37")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("14_ojqrl")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("15_3mvnn")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("16_gihs5")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("17_h0nq3")
 }, {
-"duration": 1.0,
+"duration": 20000.0,
 "texture": ExtResource("18_v48d1")
 }],
 "loop": true,
@@ -82,7 +82,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="$Audio2_play()" type="CanvasLayer"]
+[node name="HUD" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_r0cry")
 

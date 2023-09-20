@@ -11,6 +11,8 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed('skip'):
 		do_stuff()
+		if scene_id == 1:
+			get_tree().quit()
 
 
 
@@ -31,10 +33,11 @@ func _on_player_player_is_dead():
 
 func _on_button_pressed():
 	do_stuff()
+	if scene_id == 1:
+		get_tree().quit()
 
 func do_stuff():
 	if scene_id == 0:
-		scene_id = 1
 		$DeathAnimationPlayer.play('text_hide')
 		await get_tree().create_timer(1).timeout
 		$DeathSprites.hide()
@@ -59,9 +62,10 @@ func do_stuff():
 		$Glitch_effect.hide()
 		await get_tree().create_timer(0.05).timeout
 		$Glitch_effect.show()
-		$DeathText.text = 'TRY AGAIN? (restart game urself lol)'
+		$DeathText.text = 'TRY AGAIN? (reopen the game)'
 		$DeathAnimationPlayer.play('text_hide')
 		await get_tree().create_timer(3).timeout
 		$Glitch_effect.hide()
 		$DeathAnimationPlayer.play('Text_fade')
+		scene_id = 1
 

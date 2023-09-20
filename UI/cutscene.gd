@@ -5,7 +5,6 @@ extends CanvasLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Blobfish.play()
 	get_parent().main_theme.volume_db = -20
 	$Name.text = 'Blobfish'
 	get_tree().paused = true
@@ -48,6 +47,7 @@ func dialoge1():
 		$need_help.stop()
 		$sob_sob.play()
 		$Dialoge.text = '*Sob sob sob sob*'
+		$Blobfish.play()
 	elif dialogeID == 2:
 		$sob_sob.stop()
 		$Dialoge.text = 'The coral reef is dying! Humans create too much pollution and it’s bleaching the corals, and we need them to breathe!'
