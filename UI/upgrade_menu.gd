@@ -77,6 +77,7 @@ func _on_buy_button_2_pressed():
 			player_vars.algee_count -= global.upgrade_prices[1]
 			$VBoxContainer2/DescriptionContainer/Description.text = 'Increase your max health by 50 (current: 200)'
 			
+			health_increased.emit()
 			upgrade_buttons[1].text = 'bought'
 			upgrade_buttons[1].disabled = true
 

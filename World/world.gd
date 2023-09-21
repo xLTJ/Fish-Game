@@ -20,8 +20,7 @@ extends Node2D
 
 
 func _on_algee_timer_timeout():
-	print('works')
-	# creates a new instance of the Mob scene (so it basically creates the mob)
+	# creates a new instance of the algee scene (so it basically creates the algee)
 	var algee = algee_scene.instantiate()
 	algee.position = Vector2(randi_range(10, global.world_size.x - 10), randi_range(10, global.world_size.y - 10))
 
@@ -54,7 +53,6 @@ func _process(delta):
 
 
 func _on_enemy_spawn_timer_timeout():
-	print(global.enemy_count)
 	if global.enemy_count < enemy_limit:
 		var enemy = enemy_scene.instantiate()
 		enemy.position = Vector2(randi_range(10, global.world_size.x - 10), randi_range(10, global.world_size.y - 10))

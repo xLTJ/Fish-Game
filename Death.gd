@@ -62,7 +62,7 @@ func do_stuff():
 		$Glitch_effect.hide()
 		await get_tree().create_timer(0.05).timeout
 		$Glitch_effect.show()
-		$DeathText.text = 'TRY AGAIN? (reopen the game)'
+		$DeathText.text = 'TRY AGAIN?'
 		$DeathAnimationPlayer.play('text_hide')
 		await get_tree().create_timer(3).timeout
 		$Glitch_effect.hide()
