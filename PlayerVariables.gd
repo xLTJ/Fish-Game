@@ -1,5 +1,6 @@
 extends Node
 
+var is_dead = false
 var position
 var health = 100
 var max_health = 100

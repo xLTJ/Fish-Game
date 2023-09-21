@@ -1,4 +1,5 @@
 extends CanvasLayer
+@onready var player_vars = get_node("/root/PlayerVariables")
 var scene_id = 0
 
 func _ready():
@@ -9,10 +10,12 @@ func _ready():
 
 
 func _process(delta):
-	if Input.is_action_just_pressed('skip'):
-		do_stuff()
-		if scene_id == 1:
-			get_tree().quit()
+	if player_vars.is_dead == true:
+		if Input.is_action_just_pressed('skip'):
+			do_stuff()
+			if scene_id == 1:
+				print('exiting')
+				get_tree().quit()
 
 
 

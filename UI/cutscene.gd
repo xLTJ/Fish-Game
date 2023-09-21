@@ -23,7 +23,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	skip_dialogue()
-	print(global.cutsceneID)
 
 
 func _on_button_pressed():
@@ -109,7 +108,6 @@ func dialoge4():
 		queue_free()
 
 func skip_dialogue():
-	var has_pressed = false
 	if Input.is_action_just_pressed('skip'):
 		start_dialoge()
 	#if Input.is_action_just_pressed()

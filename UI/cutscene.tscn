@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dis2l4vh4nv7y"]
+[gd_scene load_steps=25 format=3 uid="uid://dis2l4vh4nv7y"]
 
 [ext_resource type="Texture2D" uid="uid://b26v60vvtdxvq" path="res://Art/Dialog_bubble_w_squiggles.png" id="1_jppxb"]
 [ext_resource type="Script" path="res://UI/cutscene.gd" id="1_r0cry"]
@@ -38,14 +38,6 @@ bg_color = Color(0, 0, 0, 0.231373)
 Button/styles/hover = SubResource("StyleBoxFlat_1skv2")
 Button/styles/normal = SubResource("StyleBoxFlat_1skv2")
 Button/styles/pressed = SubResource("StyleBoxFlat_1skv2")
-
-[sub_resource type="Animation" id="Animation_a20of"]
-resource_name = "Sad"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8k565"]
-_data = {
-"Sad": SubResource("Animation_a20of")
-}
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cxdk2"]
 animations = [{
@@ -148,11 +140,6 @@ stream = ExtResource("9_djdio")
 
 [node name="only_hope" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_2jopt")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_8k565")
-}
 
 [node name="Blobfish" type="AnimatedSprite2D" parent="."]
 position = Vector2(559, 89)
