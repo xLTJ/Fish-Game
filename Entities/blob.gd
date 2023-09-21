@@ -7,4 +7,5 @@ func _ready():
 
 func _on_body_entered(body):
 	blob_touch.emit()
+	$Speech_bubble.hide()
 

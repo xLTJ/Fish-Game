@@ -31,6 +31,9 @@ func _on_player_collected_algee():
 
 
 func _on_menu_button_pressed():
+	if player_vars.has_opened_menu == false:
+		player_vars.has_opened_menu = true
+	
 	if upgrade_open == false:
 		$UpgradeMenu.show()
 		$Background.show()

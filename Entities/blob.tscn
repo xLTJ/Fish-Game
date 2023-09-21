@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4h4ts41reqb1"]
+[gd_scene load_steps=6 format=3 uid="uid://b4h4ts41reqb1"]
 
 [ext_resource type="Script" path="res://Entities/blob.gd" id="1_blv81"]
 [ext_resource type="Texture2D" uid="uid://coc2j0h8o5utr" path="res://Art/Assets/Feeeshhhh.png" id="1_wgimg"]
+[ext_resource type="Texture2D" uid="uid://buq05vq4i7ui1" path="res://Art/Assets/UI/Speech_bubble.png" id="3_iph6j"]
+[ext_resource type="FontFile" uid="uid://dewppqhk0rb2n" path="res://Fonts/PublicPixel-z84yD.ttf" id="4_mgawb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ovxjm"]
 size = Vector2(20, 18.881)
@@ -18,5 +20,32 @@ texture = ExtResource("1_wgimg")
 position = Vector2(0, -1.575)
 scale = Vector2(2.815, 2.815)
 shape = SubResource("RectangleShape2D_ovxjm")
+
+[node name="Speech_bubble" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1.72043, -71.5)
+scale = Vector2(3.35906, 3.70833)
+texture = ExtResource("3_iph6j")
+
+[node name="SpeechBubbleText" type="Label" parent="Speech_bubble"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.5157
+offset_top = -19.4157
+offset_right = 340.484
+offset_bottom = 137.584
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.07, 0.07)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_mgawb")
+theme_override_font_sizes/font_size = 40
+text = "help me!
+please :c"
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

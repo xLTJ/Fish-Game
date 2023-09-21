@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bnalqmaj6fdg5"]
+[gd_scene load_steps=18 format=3 uid="uid://bnalqmaj6fdg5"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_we1gf"]
 [ext_resource type="Texture2D" uid="uid://b7ry8wknn4ce2" path="res://Art/Assets/Dragefisk/Dragefisk_down/dragefisk_up1.png" id="2_53lf1"]
@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://c8vrxvo5mln8h" path="res://Art/Assets/Dragefisk/Dragefisk_up/dragefisk_up2.png" id="11_lixl7"]
 [ext_resource type="Texture2D" uid="uid://c2llis4kdh5v7" path="res://Art/Assets/Dragefisk/Dragefisk_up/dragefisk_up3.png" id="12_uyq0b"]
 [ext_resource type="Texture2D" uid="uid://b0vqtepl0ohf" path="res://Art/Assets/Dragefisk/Dragefisk_up/dragefisk_up4.png" id="13_v5bti"]
+[ext_resource type="Texture2D" uid="uid://buq05vq4i7ui1" path="res://Art/Assets/UI/Speech_bubble.png" id="14_e7vvv"]
+[ext_resource type="FontFile" uid="uid://dewppqhk0rb2n" path="res://Fonts/PublicPixel-z84yD.ttf" id="15_83ffd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dkfci"]
 radius = 17.0
@@ -90,3 +92,40 @@ scale = Vector2(0.03, 0.03)
 sprite_frames = SubResource("SpriteFrames_feqjr")
 animation = &"move_up"
 frame_progress = 0.0613634
+
+[node name="Speech_bubble" type="Sprite2D" parent="."]
+position = Vector2(1.72043, -61.0753)
+scale = Vector2(3.35906, 3.50268)
+texture = ExtResource("14_e7vvv")
+
+[node name="SpeechBubbleText" type="Label" parent="Speech_bubble"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.5
+offset_top = -21.0
+offset_right = 340.5
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.07, 0.07)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("15_83ffd")
+theme_override_font_sizes/font_size = 30
+text = "im weak, pls make me stronger (press [U])"
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="NoMovementTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="UpgradeMenuTimer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+
+[connection signal="timeout" from="NoMovementTimer" to="." method="_on_no_movement_timer_timeout"]
+[connection signal="timeout" from="UpgradeMenuTimer" to="." method="_on_upgrade_menu_timer_timeout"]

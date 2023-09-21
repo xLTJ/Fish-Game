@@ -67,7 +67,6 @@ func _on_area_2d_body_entered(body):
 	health -= player_vars.player_damage
 	body.enemy_hit()
 	$HealthBorder/HealthBar.value = health
-	print(health)
 	
 	if health <= 0:
 		enemy_dead(body)
@@ -94,6 +93,5 @@ func _on_death_animation_animation_finished(anim_name):
 func _on_projectile_timer_timeout():
 	var projectile = projective_scene.instantiate()
 	projectile.position = position
-	print('KILL THEM KILL THEM KILL THEM')
 	
 	get_parent().add_child(projectile)

@@ -4,19 +4,27 @@ signal collected_algee
 signal killed_enemy
 signal player_is_dead
 @onready var player_sprite = $AnimatedSprite2D
+@onready var speech_bubble = $Speech_bubble
+@onready var speech_text = $Speech_bubble/SpeechBubbleText
 @onready var player_vars = get_node("/root/PlayerVariables")
 var direction = 'up' # Direction the player faces. Default is up
 
 var last_velocity
 
 func _ready():
-	pass
+	speech_bubble.hide()
 
 func _process(delta):
 	if player_vars.health <= 0:
 		player_death()
+		player_vars.is_dead = true
+		
+	if speech_bubble.is_visible_in_tree():
+		if player_vars.has_opened_menu == true:
+			speech_bubble.hide()
+		
 
-# Gets the input of the player and sets the players velocity. get_vector specefies four actions for the positive and negative X and Y axes. For instance 'move_left' is for negative_x (aka left)
+# Gets the input ofs the player and sets the players velocity. get_vector specefies four actions for the positive and negative X and Y axes. For instance 'move_left' is for negative_x (aka left)
 func player_input():
 	if player_vars.can_move == true:
 		var movement_direction = Input.get_vector('move_left', 'move_right', 'move_up', 'move_down')
@@ -24,6 +32,14 @@ func player_input():
 		if movement_direction.length() > 0:
 			velocity = movement_direction.normalized() * player_vars.speed
 			last_velocity = velocity
+			
+			# Turns off the timer for no movement if the player moves
+			if player_vars.has_moved == false:
+				player_vars.has_moved = true
+				$NoMovementTimer.stop()
+				speech_bubble.hide()
+				$UpgradeMenuTimer.start()
+				
 		else: velocity = Vector2.ZERO # without this the player keeps moving when the key is released
 
 
@@ -66,4 +82,16 @@ func enemy_hit():
 func player_death():
 	get_tree().paused = true
 	player_is_dead.emit()
-	
+
+
+
+
+func _on_no_movement_timer_timeout():
+	speech_bubble.show()
+	speech_text.text = "hmm...     i should use 'wasd' to move..."
+
+
+
+func _on_upgrade_menu_timer_timeout():
+	speech_bubble.show()
+	speech_text.text = 'im weak, pls make me stronger (press [U])'
