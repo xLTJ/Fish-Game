@@ -7,7 +7,7 @@ extends CharacterBody2D
 @export var detect_range = 500
 @export var speed = 100
 @export var limit = 1
-@export var health = 20
+@export var health = 30
 @export var alive = true
 
 var startPosition
@@ -17,6 +17,7 @@ var shooting = false
 func _ready():
 	startPosition = position
 	endPosition = startPosition + Vector2(0, 64)
+	$HealthBorder/HealthBar.max_value = health
 	$HealthBorder/HealthBar.value = health
 	$Sprite2D2.hide()
 

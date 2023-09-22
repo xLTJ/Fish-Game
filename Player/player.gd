@@ -93,5 +93,6 @@ func _on_no_movement_timer_timeout():
 
 
 func _on_upgrade_menu_timer_timeout():
-	speech_bubble.show()
-	speech_text.text = 'im weak, pls make me stronger (press [U])'
+	if player_vars.has_opened_menu == false:
+		speech_bubble.show()
+		speech_text.text = 'im weak, pls make me stronger (press [U])'
