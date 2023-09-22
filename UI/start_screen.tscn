@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8vtk0neipfbq"]
+
+[ext_resource type="FontFile" uid="uid://dewppqhk0rb2n" path="res://Fonts/PublicPixel-z84yD.ttf" id="1_c40ut"]
+[ext_resource type="Script" path="res://UI/start_screen.gd" id="1_u6uqi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uw3en"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Theme" id="Theme_wl6ae"]
+Button/colors/icon_focus_color = Color(1, 1, 1, 0)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 0)
+Button/styles/focus = SubResource("StyleBoxFlat_uw3en")
+
+[node name="StartScreen" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_u6uqi")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1153.0
+offset_bottom = 656.0
+color = Color(0, 0, 0, 1)
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -12.0
+offset_right = 36.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_wl6ae")
+theme_override_colors/font_hover_color = Color(0.815686, 0.0980392, 0.196078, 1)
+theme_override_fonts/font = ExtResource("1_c40ut")
+text = "PLAY"
+flat = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

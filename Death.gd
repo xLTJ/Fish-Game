@@ -1,6 +1,7 @@
 extends CanvasLayer
 @onready var player_vars = get_node("/root/PlayerVariables")
 var scene_id = 0
+var screen_done = false
 
 func _ready():
 	$DeathText.hide()
@@ -12,8 +13,9 @@ func _ready():
 func _process(delta):
 	if player_vars.is_dead == true:
 		if Input.is_action_just_pressed('skip'):
-			do_stuff()
-			if scene_id == 1:
+			if scene_id == 0:
+				do_stuff()
+			if screen_done == true:
 				print('exiting')
 				get_tree().quit()
 
@@ -35,12 +37,14 @@ func _on_player_player_is_dead():
 
 
 func _on_button_pressed():
-	do_stuff()
-	if scene_id == 1:
+	if scene_id == 0:
+		do_stuff()
+	if screen_done == true:
 		get_tree().quit()
 
 func do_stuff():
 	if scene_id == 0:
+		scene_id = 1
 		$DeathAnimationPlayer.play('text_hide')
 		await get_tree().create_timer(1).timeout
 		$DeathSprites.hide()
@@ -70,5 +74,5 @@ func do_stuff():
 		await get_tree().create_timer(3).timeout
 		$Glitch_effect.hide()
 		$DeathAnimationPlayer.play('Text_fade')
-		scene_id = 1
+		screen_done = true
 

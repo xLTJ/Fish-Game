@@ -35,14 +35,10 @@ func algee_collected():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$AlgeeTimer.start()
-	$EnemySpawnTimer.start()
-	$StronkEnemySpawnTimer.start()
-	$Death.hide()
+	get_tree().paused = true
 	var world_borders = tilemap.get_used_rect() # Gets the amount of tiles used
 	var tile_size = tilemap.cell_quadrant_size # Gets tje size of each tile in pixels
 	global.world_size = (world_borders.size - Vector2i(2,2)) * tile_size
-	main_theme.play()
 	
 
 
@@ -77,3 +73,11 @@ func _on_blob_body_entered(body):
 
 func _on_player_player_is_dead():
 	$Death.show()
+
+
+func _on_start_screen_game_started():
+	$AlgeeTimer.start()
+	$EnemySpawnTimer.start()
+	$StronkEnemySpawnTimer.start()
+	$Death.hide()
+	main_theme.play()

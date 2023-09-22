@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://djssfj338n3yp"]
+[gd_scene load_steps=22 format=3 uid="uid://djssfj338n3yp"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_msbv5"]
 [ext_resource type="PackedScene" uid="uid://bnalqmaj6fdg5" path="res://Player/player.tscn" id="1_r2kw7"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://bco2qxdjhki8p" path="res://Art/Assets/Deco/IMG_1453.png" id="19_11r8y"]
 [ext_resource type="AudioStream" uid="uid://1p8xqfgunijb" path="res://Sound/collect_sound.mp3" id="19_y6mw4"]
 [ext_resource type="AudioStream" uid="uid://bjh8mxgmrkg74" path="res://Sound/hit_sound.mp3" id="20_vcvbm"]
+[ext_resource type="PackedScene" uid="uid://c8vtk0neipfbq" path="res://UI/start_screen.tscn" id="21_wtmcs"]
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("tilemap")]
 script = ExtResource("1_msbv5")
@@ -441,6 +442,8 @@ volume_db = -5.0
 stream = ExtResource("20_vcvbm")
 pitch_scale = 0.75
 
+[node name="StartScreen" parent="." instance=ExtResource("21_wtmcs")]
+
 [connection signal="collected_algee" from="Player" to="." method="algee_collected"]
 [connection signal="collected_algee" from="Player" to="CanvasLayer" method="_on_player_collected_algee"]
 [connection signal="killed_enemy" from="Player" to="." method="_on_player_killed_enemy"]
@@ -450,3 +453,4 @@ pitch_scale = 0.75
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
 [connection signal="timeout" from="StronkEnemySpawnTimer" to="." method="_on_stronk_enemy_spawn_timer_timeout"]
 [connection signal="body_entered" from="Blob" to="." method="_on_blob_body_entered"]
+[connection signal="game_started" from="StartScreen" to="." method="_on_start_screen_game_started"]
