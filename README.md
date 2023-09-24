@@ -1,5 +1,5 @@
-# Fish-Game
-The game of all time
+# Reef Rescuer
+Kill humans and save the coral reef!
 
 ## Download
-[download here](https://cdn.discordapp.com/attachments/1053619418371985452/1154780697098195064/Reef_Rescuer.zip)
+[Download here](https://cdn.discordapp.com/attachments/1053619418371985452/1154780697098195064/Reef_Rescuer.zip)
